@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+#import XGboost not using now, maybe later for baseline
 from sklearn.metrics import roc_auc_score, precision_recall_curve, roc_curve, average_precision_score
 from sklearn.model_selection import KFold, StratifiedKFold
 from lightgbm import LGBMClassifier
@@ -10,7 +10,7 @@ import seaborn as sns
 import gc
 plt.xkcd()
 
-PATH='../input/'
+PATH='../input/' #SECURITY CHECKPOINT :))
 
 def reduce_mem_usage(df):
     """ iterate through all the columns of a dataframe and modify the data type
@@ -94,6 +94,8 @@ def average_dummies(df, dummy_col, count_col, gb_col, preffix='', del_input=True
     else:
         return None
     
+    
+    #Some basic transformation of data and create new cols from relevant datasets
 def build_model_input():
     print('Read Bureau_Balance')
     buro_bal = import_data(PATH+'/bureau_balance.csv')
@@ -160,7 +162,7 @@ def build_model_input():
     print('Done with data preparation')
     return data, test, y
 
-
+#just basic train, like always
 def train_model(data_, test_, y_, folds_):
 
     oof_preds = np.zeros(data_.shape[0])
